@@ -3,105 +3,123 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portal de Programación - Neón Azul</title>
+  <title>Portal de Programación</title>
   <style>
     :root {
-      --bg-deep: #020617;
-      --bg-card: #060f26;
-      --neon-dark: #002299;
-      --neon-mid: #0044dd;
-      --neon-bright: #0066ff;
-      --text-main: #dbeafe;
-      --text-dim: #7dd3fc;
+      --bg-navy: #02081a;
+      --bg-navy-glow: #051336;
+      --card-black: #030305;
+      --card-black-hover: #07080d;
+      --neon-blue: #0055ff;
+      --neon-electric: #1e90ff;
+      --text-white: #f8fafc;
+      --text-muted: #94a3b8;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     }
 
     body {
-      background-color: var(--bg-deep);
+      background-color: var(--bg-navy);
       background-image:
-        linear-gradient(rgba(0, 68, 221, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 68, 221, 0.08) 1px, transparent 1px);
-      background-size: 40px 40px;
-      color: var(--text-main);
+        radial-gradient(circle at 50% 0%, #071947 0%, #02081a 65%),
+        linear-gradient(rgba(0, 85, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 85, 255, 0.06) 1px, transparent 1px);
+      background-size: 100% 100%, 36px 36px, 36px 36px;
+      color: var(--text-white);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 28px;
       overflow-x: hidden;
-      padding: 24px;
     }
 
     .hidden {
       display: none !important;
     }
 
-    /* Pantalla de Bienvenida */
+    /* 1. PANTALLA DE BIENVENIDA (Tarjeta Negra sobre Fondo Azul Oscuro) */
     .welcome-box {
+      background: var(--card-black);
+      border: 1.5px solid var(--neon-blue);
+      border-radius: 20px;
+      padding: 64px 48px;
       text-align: center;
-      padding: 60px 48px;
-      border-radius: 18px;
-      background: rgba(6, 15, 38, 0.75);
-      border: 1.5px solid var(--neon-mid);
-      box-shadow:
-        0 0 25px rgba(0, 68, 221, 0.45),
-        inset 0 0 20px rgba(0, 51, 204, 0.25);
-      backdrop-filter: blur(8px);
       max-width: 680px;
       width: 100%;
-      animation: fadeIn 0.6s ease;
+      box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.85),
+        0 0 25px rgba(0, 85, 255, 0.35),
+        inset 0 0 18px rgba(0, 85, 255, 0.12);
+      animation: fadeUp 0.5s ease;
+    }
+
+    .status-badge {
+      display: inline-block;
+      font-family: monospace;
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      color: var(--neon-electric);
+      background: rgba(0, 85, 255, 0.12);
+      border: 1px solid rgba(30, 144, 255, 0.35);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 24px;
     }
 
     .neon-title {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: #e0f2fe;
+      font-size: clamp(1.9rem, 4.2vw, 2.9rem);
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #ffffff;
       text-shadow:
-        0 0 8px var(--neon-bright),
-        0 0 20px var(--neon-mid),
-        0 0 40px var(--neon-dark);
-      margin-bottom: 36px;
+        0 0 12px rgba(30, 144, 255, 0.8),
+        0 0 28px rgba(0, 85, 255, 0.6);
+      margin-bottom: 38px;
     }
 
     .btn-neon {
-      background: transparent;
-      color: #93c5fd;
-      border: 2px solid var(--neon-bright);
-      padding: 14px 44px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: 2px;
+      background: #000000;
+      color: #ffffff;
+      border: 2px solid var(--neon-electric);
+      padding: 15px 48px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
       box-shadow:
-        0 0 15px rgba(0, 85, 255, 0.5),
-        inset 0 0 10px rgba(0, 85, 255, 0.25);
+        0 0 18px rgba(0, 85, 255, 0.45),
+        inset 0 0 10px rgba(0, 85, 255, 0.2);
       transition: all 0.25s ease;
     }
 
     .btn-neon:hover {
-      background: rgba(0, 85, 255, 0.18);
-      color: #ffffff;
+      background: var(--neon-blue);
+      border-color: #60a5fa;
       box-shadow:
-        0 0 25px var(--neon-bright),
-        0 0 50px var(--neon-mid),
-        inset 0 0 15px rgba(0, 102, 255, 0.4);
+        0 0 30px var(--neon-electric),
+        0 0 60px rgba(0, 85, 255, 0.6);
       transform: translateY(-2px);
     }
 
-    /* Pantalla de Carga: Entrando... */
+    /* 2. PANTALLA DE CARGA */
     .loading-box {
+      background: var(--card-black);
+      border: 1.5px solid var(--neon-blue);
+      border-radius: 18px;
+      padding: 44px 36px;
       text-align: center;
       max-width: 420px;
       width: 100%;
-      animation: fadeIn 0.3s ease;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.85), 0 0 25px rgba(0, 85, 255, 0.3);
+      animation: fadeUp 0.3s ease;
     }
 
     .dots {
@@ -112,11 +130,11 @@
     }
 
     .dots span {
-      width: 14px;
-      height: 14px;
+      width: 13px;
+      height: 13px;
       border-radius: 50%;
-      background: var(--neon-bright);
-      box-shadow: 0 0 14px var(--neon-bright);
+      background: var(--neon-electric);
+      box-shadow: 0 0 14px var(--neon-electric);
       animation: pulse 1s infinite ease-in-out;
     }
 
@@ -124,151 +142,188 @@
     .dots span:nth-child(3) { animation-delay: 0.4s; }
 
     .loading-text {
-      font-size: 1.6rem;
+      font-size: 1.45rem;
       font-weight: 600;
       letter-spacing: 2px;
-      color: #bfdbfe;
-      text-shadow: 0 0 14px var(--neon-bright);
+      color: #ffffff;
       margin-bottom: 22px;
     }
 
     .progress-track {
       width: 100%;
       height: 8px;
-      background: rgba(0, 34, 153, 0.35);
-      border: 1px solid var(--neon-mid);
+      background: #0a0c12;
+      border: 1px solid #1e293b;
       border-radius: 999px;
       overflow: hidden;
-      box-shadow: 0 0 12px rgba(0, 68, 221, 0.4);
     }
 
     .progress-fill {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, var(--neon-dark), var(--neon-bright));
-      box-shadow: 0 0 16px var(--neon-bright);
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-electric));
+      box-shadow: 0 0 16px var(--neon-electric);
       transition: width 1.5s linear;
     }
 
-    /* Catálogo de Materias */
+    /* 3. CATÁLOGO DE MATERIAS (Contenedores Negros sobre Fondo Azul Oscuro) */
     .catalog-container {
       width: 100%;
-      max-width: 1160px;
-      animation: fadeIn 0.6s ease;
+      max-width: 1180px;
+      animation: fadeUp 0.5s ease;
     }
 
     .catalog-header {
+      background: var(--card-black);
+      border: 1px solid rgba(30, 144, 255, 0.4);
+      border-radius: 14px;
+      padding: 18px 26px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 16px;
-      margin-bottom: 32px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid rgba(0, 85, 255, 0.35);
+      margin-bottom: 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
     }
 
     .catalog-header h2 {
-      font-size: 1.7rem;
-      color: #e0f2fe;
-      text-shadow: 0 0 14px var(--neon-mid);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.5px;
     }
 
     .btn-back {
-      background: transparent;
-      color: #93c5fd;
-      border: 1px solid var(--neon-mid);
-      padding: 8px 18px;
+      background: #000000;
+      color: #cbd5e1;
+      border: 1px solid var(--neon-blue);
+      padding: 9px 18px;
       border-radius: 8px;
       cursor: pointer;
       font-size: 0.9rem;
-      transition: all 0.25s ease;
+      font-weight: 600;
+      transition: all 0.2s ease;
     }
 
     .btn-back:hover {
-      border-color: var(--neon-bright);
-      box-shadow: 0 0 15px rgba(0, 85, 255, 0.5);
+      background: var(--neon-blue);
       color: #ffffff;
+      box-shadow: 0 0 16px rgba(0, 85, 255, 0.6);
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
       gap: 24px;
     }
 
     .card {
-      background: rgba(6, 15, 38, 0.85);
-      border: 1.5px solid var(--neon-mid);
-      border-radius: 14px;
-      padding: 26px;
+      background: var(--card-black);
+      border: 1.5px solid #132347;
+      border-radius: 16px;
+      padding: 28px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       box-shadow:
-        0 0 18px rgba(0, 51, 204, 0.3),
-        inset 0 0 12px rgba(0, 34, 153, 0.2);
+        0 14px 32px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
       transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--neon-electric), transparent);
+      opacity: 0.6;
+      transition: opacity 0.25s ease;
     }
 
     .card:hover {
-      border-color: var(--neon-bright);
+      background: var(--card-black-hover);
+      border-color: var(--neon-electric);
       box-shadow:
-        0 0 28px rgba(0, 102, 255, 0.55),
-        inset 0 0 16px rgba(0, 85, 255, 0.3);
+        0 18px 40px rgba(0, 0, 0, 0.9),
+        0 0 24px rgba(0, 85, 255, 0.35);
       transform: translateY(-4px);
     }
 
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
     .card-tag {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-family: monospace;
-      color: #60a5fa;
+      color: var(--neon-electric);
       letter-spacing: 1.5px;
-      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .card-icon {
+      color: var(--neon-electric);
+      opacity: 0.85;
     }
 
     .card h3 {
-      font-size: 1.3rem;
-      color: #eff6ff;
+      font-size: 1.32rem;
+      color: #ffffff;
       margin-bottom: 10px;
-      text-shadow: 0 0 10px rgba(0, 102, 255, 0.6);
+      font-weight: 700;
     }
 
     .card p {
-      font-size: 0.93rem;
-      color: #93c5fd;
-      line-height: 1.5;
-      margin-bottom: 22px;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 24px;
     }
 
     .btn-manual {
-      display: block;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       text-decoration: none;
-      color: #dbeafe;
-      border: 1.5px solid var(--neon-bright);
-      padding: 11px 16px;
-      border-radius: 8px;
-      font-size: 0.92rem;
+      background: #000000;
+      color: #ffffff;
+      border: 1.5px solid var(--neon-blue);
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 0.9rem;
       font-weight: 600;
-      letter-spacing: 0.5px;
-      box-shadow: 0 0 12px rgba(0, 85, 255, 0.35);
+      letter-spacing: 0.4px;
+      box-shadow: 0 0 12px rgba(0, 85, 255, 0.25);
       transition: all 0.25s ease;
     }
 
     .btn-manual:hover {
-      background: rgba(0, 102, 255, 0.22);
-      color: #ffffff;
-      box-shadow: 0 0 22px var(--neon-bright);
+      background: var(--neon-blue);
+      border-color: var(--neon-electric);
+      box-shadow: 0 0 22px rgba(30, 144, 255, 0.65);
     }
 
     @keyframes pulse {
       0%, 100% { transform: scale(0.8); opacity: 0.4; }
-      50% { transform: scale(1.2); opacity: 1; }
+      50% { transform: scale(1.25); opacity: 1; }
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
@@ -277,6 +332,7 @@
 
   <!-- 1. PANTALLA INICIAL -->
   <section id="screen-welcome" class="welcome-box">
+    <div class="status-badge">SISTEMA ACADÉMICO // V2.0</div>
     <h1 class="neon-title">Hola alumnos de programación</h1>
     <button class="btn-neon" onclick="iniciarEntrada()">Entrar</button>
   </section>
@@ -298,68 +354,86 @@
   <main id="screen-catalog" class="catalog-container hidden">
     <header class="catalog-header">
       <h2>Catálogo de Programación</h2>
-      <button class="btn-back" onclick="volverInicio()">← Volver</button>
+      <button class="btn-back" onclick="volverInicio()">← Volver al inicio</button>
     </header>
 
     <div class="grid">
       <!-- Módulo 1 -->
       <article class="card">
         <div>
-          <div class="card-tag">01 // LÓGICA Y ALGORITMOS</div>
+          <div class="card-top">
+            <span class="card-tag">01 // LÓGICA Y ALGORITMOS</span>
+            <svg class="card-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+          </div>
           <h3>Principios de Programación</h3>
           <p>Fundamentos de algoritmos, diagramas de flujo, variables, estructuras de control y lógica computacional.</p>
         </div>
-        <a href="https://elhacker.info/manuales/Lenguajes%20de%20Programacion/Fundamentos%20de%20programaci%C3%B3n,%20algoritmos,%20L%C3%B3gica%20de%20programaci%C3%B3n,%20etc/Fundamentos-de-Programacion.pdf%20%C2%B7%20versi%C3%B3n%201.pdf" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: Fundamentos (Alfaomega)</a>
+        <a href="https://elhacker.info/manuales/Lenguajes%20de%20Programacion/Fundamentos%20de%20programaci%C3%B3n,%20algoritmos,%20L%C3%B3gica%20de%20programaci%C3%B3n,%20etc/Fundamentos-de-Programacion.pdf%20%C2%B7%20versi%C3%B3n%201.pdf" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: Fundamentos (Alfaomega) ↗</a>
       </article>
 
       <!-- Módulo 2 -->
       <article class="card">
         <div>
-          <div class="card-tag">02 // POO & BACKEND</div>
+          <div class="card-top">
+            <span class="card-tag">02 // POO & BACKEND</span>
+            <svg class="card-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+          </div>
           <h3>Programación en Java</h3>
           <p>Programación orientada a objetos, clases, herencia, polimorfismo, manejo de excepciones y estructuras de datos.</p>
         </div>
-        <a href="https://docs.oracle.com/javase/tutorial/" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: Documentación Oficial Oracle</a>
+        <a href="https://docs.oracle.com/javase/tutorial/" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: Documentación Oracle ↗</a>
       </article>
 
       <!-- Módulo 3 -->
       <article class="card">
         <div>
-          <div class="card-tag">03 // HTML5 & CSS3</div>
+          <div class="card-top">
+            <span class="card-tag">03 // HTML5 & CSS3</span>
+            <svg class="card-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          </div>
           <h3>Programación Web</h3>
           <p>Estructura semántica con HTML, diseño responsivo, flexbox, grid y estilos modernos con CSS.</p>
         </div>
-        <a href="https://developer.mozilla.org/es/docs/Learn_web_development" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: MDN Web Docs (Mozilla)</a>
+        <a href="https://developer.mozilla.org/es/docs/Learn_web_development" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: MDN Web Docs (Mozilla) ↗</a>
       </article>
 
       <!-- Módulo 4 -->
       <article class="card">
         <div>
-          <div class="card-tag">04 // ANDROID & MÓVIL</div>
+          <div class="card-top">
+            <span class="card-tag">04 // ANDROID & MÓVIL</span>
+            <svg class="card-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+          </div>
           <h3>Aplicaciones Móviles</h3>
           <p>Diseño de interfaces móviles, ciclo de vida de pantallas, navegación y consumo de servicios en dispositivos.</p>
         </div>
-        <a href="https://developer.android.com/develop?hl=es-419" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: Android Developers (Google)</a>
+        <a href="https://developer.android.com/develop?hl=es-419" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: Android Developers ↗</a>
       </article>
 
       <!-- Módulo 5 -->
       <article class="card">
         <div>
-          <div class="card-tag">05 // SCRUM & AGILE</div>
+          <div class="card-top">
+            <span class="card-tag">05 // SCRUM & AGILE</span>
+            <svg class="card-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+          </div>
           <h3>Metodologías Ágiles</h3>
           <p>Gestión iterativa de proyectos, roles en Scrum, sprints, tableros Kanban y entrega continua de software.</p>
         </div>
-        <a href="https://scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-Spanish-Latin-South-American.pdf" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: La Guía Oficial de Scrum</a>
+        <a href="https://scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-Spanish-Latin-South-American.pdf" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: Guía Oficial Scrum ↗</a>
       </article>
 
       <!-- Módulo 6 -->
       <article class="card">
         <div>
-          <div class="card-tag">06 // REFERENCIA INTERACTIVA</div>
+          <div class="card-top">
+            <span class="card-tag">06 // REFERENCIA INTERACTIVA</span>
+            <svg class="card-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+          </div>
           <h3>W3Schools</h3>
           <p>Tutoriales interactivos, ejemplos ejecutables en vivo y documentación rápida para practicar desarrollo web y código.</p>
         </div>
-        <a href="https://www.w3schools.com/" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: Portal Oficial W3Schools</a>
+        <a href="https://www.w3schools.com/" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: Portal W3Schools ↗</a>
       </article>
     </div>
   </main>
