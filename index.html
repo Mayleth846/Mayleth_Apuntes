@@ -6,87 +6,73 @@
   <title>Portal de Programación</title>
   <style>
     :root {
-      --bg-navy: #02081a;
-      --bg-navy-glow: #051336;
-      --card-black: #030305;
-      --card-black-hover: #07080d;
-      --neon-blue: #0055ff;
-      --neon-electric: #1e90ff;
+      --bg-navy: #00041f;
+      --neon-blue: #0a3cff;
+      --neon-electric: #2f7bff;
+      --card-dark: #02071f;
+      --card-hover: #050d36;
+      --border-white: #ffffff;
       --text-white: #f8fafc;
-      --text-muted: #94a3b8;
+      --text-muted: #b6c4e0;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
 
     body {
       background-color: var(--bg-navy);
       background-image:
-        radial-gradient(circle at 50% 0%, #071947 0%, #02081a 65%),
-        linear-gradient(rgba(0, 85, 255, 0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 85, 255, 0.06) 1px, transparent 1px);
-      background-size: 100% 100%, 36px 36px, 36px 36px;
+        radial-gradient(ellipse at 50% -10%, rgba(20, 70, 255, 0.55) 0%, transparent 60%),
+        radial-gradient(ellipse at 90% 100%, rgba(0, 110, 255, 0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 0% 80%, rgba(40, 40, 255, 0.3) 0%, transparent 50%),
+        linear-gradient(rgba(47, 123, 255, 0.10) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(47, 123, 255, 0.10) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+      background-attachment: fixed;
       color: var(--text-white);
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       padding: 28px;
       overflow-x: hidden;
     }
+    .hidden { display: none !important; }
 
-    .hidden {
-      display: none !important;
-    }
-
-    /* 1. PANTALLA DE BIENVENIDA (Tarjeta Negra sobre Fondo Azul Oscuro) */
+    /* Bienvenida */
     .welcome-box {
-      background: var(--card-black);
-      border: 1.5px solid var(--neon-blue);
+      background: var(--card-dark);
+      border: 2px solid var(--border-white);
       border-radius: 20px;
       padding: 64px 48px;
       text-align: center;
       max-width: 680px;
       width: 100%;
-      box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.85),
-        0 0 25px rgba(0, 85, 255, 0.35),
-        inset 0 0 18px rgba(0, 85, 255, 0.12);
+      box-shadow: 0 0 30px rgba(47, 123, 255, 0.5), 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 0 18px rgba(47, 123, 255, 0.15);
       animation: fadeUp 0.5s ease;
     }
-
     .status-badge {
       display: inline-block;
       font-family: monospace;
       font-size: 0.78rem;
       letter-spacing: 2px;
-      color: var(--neon-electric);
-      background: rgba(0, 85, 255, 0.12);
-      border: 1px solid rgba(30, 144, 255, 0.35);
+      color: #ffffff;
+      background: rgba(10, 60, 255, 0.25);
+      border: 1px solid var(--border-white);
       padding: 6px 14px;
       border-radius: 999px;
       margin-bottom: 24px;
     }
-
     .neon-title {
       font-size: clamp(1.9rem, 4.2vw, 2.9rem);
       font-weight: 800;
-      letter-spacing: 0.5px;
       color: #ffffff;
-      text-shadow:
-        0 0 12px rgba(30, 144, 255, 0.8),
-        0 0 28px rgba(0, 85, 255, 0.6);
+      text-shadow: 0 0 12px rgba(47, 123, 255, 0.9), 0 0 30px rgba(10, 60, 255, 0.7);
       margin-bottom: 38px;
     }
-
     .btn-neon {
       background: #000000;
       color: #ffffff;
-      border: 2px solid var(--neon-electric);
+      border: 2px solid var(--border-white);
       padding: 15px 48px;
       font-size: 1.05rem;
       font-weight: 700;
@@ -94,88 +80,50 @@
       text-transform: uppercase;
       border-radius: 12px;
       cursor: pointer;
-      box-shadow:
-        0 0 18px rgba(0, 85, 255, 0.45),
-        inset 0 0 10px rgba(0, 85, 255, 0.2);
+      box-shadow: 0 0 18px rgba(47, 123, 255, 0.6), inset 0 0 10px rgba(47, 123, 255, 0.25);
       transition: all 0.25s ease;
     }
-
     .btn-neon:hover {
       background: var(--neon-blue);
-      border-color: #60a5fa;
-      box-shadow:
-        0 0 30px var(--neon-electric),
-        0 0 60px rgba(0, 85, 255, 0.6);
+      box-shadow: 0 0 30px var(--neon-electric), 0 0 60px rgba(10, 60, 255, 0.7);
       transform: translateY(-2px);
     }
 
-    /* 2. PANTALLA DE CARGA */
+    /* Carga */
     .loading-box {
-      background: var(--card-black);
-      border: 1.5px solid var(--neon-blue);
+      background: var(--card-dark);
+      border: 2px solid var(--border-white);
       border-radius: 18px;
       padding: 44px 36px;
       text-align: center;
       max-width: 420px;
       width: 100%;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.85), 0 0 25px rgba(0, 85, 255, 0.3);
+      box-shadow: 0 0 30px rgba(47, 123, 255, 0.45), 0 15px 40px rgba(0, 0, 0, 0.8);
       animation: fadeUp 0.3s ease;
     }
-
-    .dots {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
+    .dots { display: flex; justify-content: center; gap: 12px; margin-bottom: 20px; }
     .dots span {
-      width: 13px;
-      height: 13px;
-      border-radius: 50%;
+      width: 13px; height: 13px; border-radius: 50%;
       background: var(--neon-electric);
       box-shadow: 0 0 14px var(--neon-electric);
       animation: pulse 1s infinite ease-in-out;
     }
-
     .dots span:nth-child(2) { animation-delay: 0.2s; }
     .dots span:nth-child(3) { animation-delay: 0.4s; }
-
-    .loading-text {
-      font-size: 1.45rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      color: #ffffff;
-      margin-bottom: 22px;
-    }
-
-    .progress-track {
-      width: 100%;
-      height: 8px;
-      background: #0a0c12;
-      border: 1px solid #1e293b;
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
+    .loading-text { font-size: 1.45rem; font-weight: 600; letter-spacing: 2px; margin-bottom: 22px; }
+    .progress-track { width: 100%; height: 8px; background: #0a0c12; border: 1px solid #ffffff; border-radius: 999px; overflow: hidden; }
     .progress-fill {
-      height: 100%;
-      width: 0%;
+      height: 100%; width: 0%;
       background: linear-gradient(90deg, var(--neon-blue), var(--neon-electric));
       box-shadow: 0 0 16px var(--neon-electric);
       transition: width 1.5s linear;
     }
 
-    /* 3. CATÁLOGO DE MATERIAS (Contenedores Negros sobre Fondo Azul Oscuro) */
-    .catalog-container {
-      width: 100%;
-      max-width: 1180px;
-      animation: fadeUp 0.5s ease;
-    }
-
+    /* Catálogo */
+    .catalog-container { width: 100%; max-width: 1180px; animation: fadeUp 0.5s ease; }
     .catalog-header {
-      background: var(--card-black);
-      border: 1px solid rgba(30, 144, 255, 0.4);
+      background: var(--card-dark);
+      border: 1.5px solid var(--border-white);
       border-radius: 14px;
       padding: 18px 26px;
       display: flex;
@@ -184,20 +132,13 @@
       flex-wrap: wrap;
       gap: 16px;
       margin-bottom: 28px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 22px rgba(47, 123, 255, 0.4);
     }
-
-    .catalog-header h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #ffffff;
-      letter-spacing: 0.5px;
-    }
-
+    .catalog-header h2 { font-size: 1.5rem; font-weight: 700; }
     .btn-back {
       background: #000000;
-      color: #cbd5e1;
-      border: 1px solid var(--neon-blue);
+      color: #ffffff;
+      border: 1.5px solid var(--border-white);
       padding: 9px 18px;
       border-radius: 8px;
       cursor: pointer;
@@ -205,152 +146,83 @@
       font-weight: 600;
       transition: all 0.2s ease;
     }
+    .btn-back:hover { background: var(--neon-blue); box-shadow: 0 0 16px rgba(47, 123, 255, 0.8); }
 
-    .btn-back:hover {
-      background: var(--neon-blue);
-      color: #ffffff;
-      box-shadow: 0 0 16px rgba(0, 85, 255, 0.6);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-      gap: 24px;
-    }
-
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 24px; }
     .card {
-      background: var(--card-black);
-      border: 1.5px solid #132347;
+      background: var(--card-dark);
+      border: 1.5px solid var(--border-white);
       border-radius: 16px;
       padding: 28px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      box-shadow:
-        0 14px 32px rgba(0, 0, 0, 0.8),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 16px rgba(47, 123, 255, 0.3), 0 14px 32px rgba(0, 0, 0, 0.8);
       transition: all 0.25s ease;
-      position: relative;
-      overflow: hidden;
     }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--neon-electric), transparent);
-      opacity: 0.6;
-      transition: opacity 0.25s ease;
-    }
-
     .card:hover {
-      background: var(--card-black-hover);
-      border-color: var(--neon-electric);
-      box-shadow:
-        0 18px 40px rgba(0, 0, 0, 0.9),
-        0 0 24px rgba(0, 85, 255, 0.35);
+      background: var(--card-hover);
+      box-shadow: 0 0 28px rgba(47, 123, 255, 0.7), 0 18px 40px rgba(0, 0, 0, 0.9);
       transform: translateY(-4px);
     }
+    .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .card-tag { font-size: 0.76rem; font-family: monospace; color: #8fb8ff; letter-spacing: 1.5px; font-weight: 600; }
+    .card-icon { color: #8fb8ff; }
+    .card h3 { font-size: 1.32rem; margin-bottom: 10px; font-weight: 700; }
+    .card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 24px; }
 
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    .card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 14px;
-    }
-
-    .card-tag {
-      font-size: 0.76rem;
-      font-family: monospace;
-      color: var(--neon-electric);
-      letter-spacing: 1.5px;
-      font-weight: 600;
-    }
-
-    .card-icon {
-      color: var(--neon-electric);
-      opacity: 0.85;
-    }
-
-    .card h3 {
-      font-size: 1.32rem;
-      color: #ffffff;
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
-
-    .card p {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-      margin-bottom: 24px;
-    }
-
+    .btn-group { display: flex; flex-direction: column; gap: 10px; }
     .btn-manual {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      text-align: center;
       text-decoration: none;
       background: #000000;
       color: #ffffff;
-      border: 1.5px solid var(--neon-blue);
+      border: 1.5px solid var(--border-white);
       padding: 12px 16px;
       border-radius: 10px;
       font-size: 0.9rem;
       font-weight: 600;
-      letter-spacing: 0.4px;
-      box-shadow: 0 0 12px rgba(0, 85, 255, 0.25);
+      box-shadow: 0 0 12px rgba(47, 123, 255, 0.3);
       transition: all 0.25s ease;
     }
+    .btn-manual:hover { background: var(--neon-blue); box-shadow: 0 0 22px rgba(47, 123, 255, 0.9); }
+    .btn-manual:focus-visible, .btn-neon:focus-visible, .btn-back:focus-visible { outline: 3px solid #ffffff; outline-offset: 3px; }
 
-    .btn-manual:hover {
-      background: var(--neon-blue);
-      border-color: var(--neon-electric);
-      box-shadow: 0 0 22px rgba(30, 144, 255, 0.65);
+    /* Contador de visitas */
+    .visit-counter {
+      margin-top: 28px;
+      background: var(--card-dark);
+      border: 1.5px solid var(--border-white);
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      box-shadow: 0 0 18px rgba(47, 123, 255, 0.45);
     }
+    .visit-counter strong { color: #ffffff; font-size: 1.1rem; text-shadow: 0 0 10px rgba(47, 123, 255, 0.9); }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(0.8); opacity: 0.4; }
-      50% { transform: scale(1.25); opacity: 1; }
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes pulse { 0%, 100% { transform: scale(0.8); opacity: 0.4; } 50% { transform: scale(1.25); opacity: 1; } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
   </style>
 </head>
 <body>
 
-  <!-- 1. PANTALLA INICIAL -->
   <section id="screen-welcome" class="welcome-box">
     <div class="status-badge">Dra. Mayleth Sánchez P.</div>
     <h1 class="neon-title">Hola alumnos de programación</h1>
     <button class="btn-neon" onclick="iniciarEntrada()">Entrar</button>
   </section>
 
-  <!-- 2. PANTALLA DE CARGA -->
   <section id="screen-loading" class="loading-box hidden">
-    <div class="dots">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+    <div class="dots"><span></span><span></span><span></span></div>
     <div class="loading-text">Entrando...</div>
-    <div class="progress-track">
-      <div id="progress-bar" class="progress-fill"></div>
-    </div>
+    <div class="progress-track"><div id="progress-bar" class="progress-fill"></div></div>
   </section>
 
-  <!-- 3. CATÁLOGO DE MATERIAS -->
   <main id="screen-catalog" class="catalog-container hidden">
     <header class="catalog-header">
       <h2>Catálogo de Programación</h2>
@@ -358,7 +230,6 @@
     </header>
 
     <div class="grid">
-      <!-- Módulo 1 -->
       <article class="card">
         <div>
           <div class="card-top">
@@ -368,10 +239,12 @@
           <h3>Principios de Programación</h3>
           <p>Fundamentos de algoritmos, diagramas de flujo, variables, estructuras de control y lógica computacional.</p>
         </div>
-        <a href="https://elhacker.info/manuales/Lenguajes%20de%20Programacion/Fundamentos%20de%20programaci%C3%B3n,%20algoritmos,%20L%C3%B3gica%20de%20programaci%C3%B3n,%20etc/Fundamentos-de-Programacion.pdf%20%C2%B7%20versi%C3%B3n%201.pdf" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: Fundamentos (Alfaomega) ↗</a>
+        <div class="btn-group">
+          <a href="https://elhacker.info/manuales/Lenguajes%20de%20Programacion/Fundamentos%20de%20programaci%C3%B3n,%20algoritmos,%20L%C3%B3gica%20de%20programaci%C3%B3n,%20etc/Fundamentos-de-Programacion.pdf%20%C2%B7%20versi%C3%B3n%201.pdf" target="_blank" rel="noopener noreferrer" class="btn-manual">Manual 1: Fundamentos (Alfaomega) ↗</a>
+          <a href="https://cs50.harvard.edu/x/" target="_blank" rel="noopener noreferrer" class="btn-manual">Manual 2: CS50 Harvard ↗</a>
+        </div>
       </article>
 
-      <!-- Módulo 2 -->
       <article class="card">
         <div>
           <div class="card-top">
@@ -381,10 +254,12 @@
           <h3>Programación en Java</h3>
           <p>Programación orientada a objetos, clases, herencia, polimorfismo, manejo de excepciones y estructuras de datos.</p>
         </div>
-        <a href="https://docs.oracle.com/javase/tutorial/" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: Documentación Oracle ↗</a>
+        <div class="btn-group">
+          <a href="https://docs.oracle.com/javase/tutorial/" target="_blank" rel="noopener noreferrer" class="btn-manual">Manual 1: Documentación Oracle ↗</a>
+          <a href="https://dev.java/learn/" target="_blank" rel="noopener noreferrer" class="btn-manual">Manual 2: Dev.java Learn ↗</a>
+        </div>
       </article>
 
-      <!-- Módulo 3 -->
       <article class="card">
         <div>
           <div class="card-top">
@@ -394,10 +269,12 @@
           <h3>Programación Web</h3>
           <p>Estructura semántica con HTML, diseño responsivo, flexbox, grid y estilos modernos con CSS.</p>
         </div>
-        <a href="https://developer.mozilla.org/es/docs/Learn_web_development" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: MDN Web Docs (Mozilla) ↗</a>
+        <div class="btn-group">
+          <a href="https://developer.mozilla.org/es/docs/Learn_web_development" target="_blank" rel="noopener noreferrer" class="btn-manual">Manual 1: MDN Web Docs (Mozilla) ↗</a>
+          <a href="https://web.dev/learn" target="_blank" rel="noopener noreferrer" class="btn-manual">Manual 2: web.dev Learn (Google) ↗</a>
+        </div>
       </article>
 
-      <!-- Módulo 4 -->
       <article class="card">
         <div>
           <div class="card-top">
@@ -407,10 +284,12 @@
           <h3>Aplicaciones Móviles</h3>
           <p>Diseño de interfaces móviles, ciclo de vida de pantallas, navegación y consumo de servicios en dispositivos.</p>
         </div>
-        <a href="https://developer.android.com/develop?hl=es-419" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: Android Developers ↗</a>
+        <div class="btn-group">
+          <a href="https://developer.android.com/develop?hl=es-419" target="_blank" rel="noopener noreferrer" class="btn-manual">Manual 1: Android Developers ↗</a>
+          <a href="https://developer.android.com/courses/android-basics-compose/course?hl=es-419" target="_blank" rel="noopener noreferrer" class="btn-manual">Manual 2: Android Basics con Compose ↗</a>
+        </div>
       </article>
 
-      <!-- Módulo 5 -->
       <article class="card">
         <div>
           <div class="card-top">
@@ -420,10 +299,12 @@
           <h3>Metodologías Ágiles</h3>
           <p>Gestión iterativa de proyectos, roles en Scrum, sprints, tableros Kanban y entrega continua de software.</p>
         </div>
-        <a href="https://scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-Spanish-Latin-South-American.pdf" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: Guía Oficial Scrum ↗</a>
+        <div class="btn-group">
+          <a href="https://scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-Spanish-Latin-South-American.pdf" target="_blank" rel="noopener noreferrer" class="btn-manual">Manual 1: Guía Oficial Scrum ↗</a>
+          <a href="https://agilemanifesto.org/iso/es/manifesto.html" target="_blank" rel="noopener noreferrer" class="btn-manual">Manual 2: Manifiesto Ágil ↗</a>
+        </div>
       </article>
 
-      <!-- Módulo 6 -->
       <article class="card">
         <div>
           <div class="card-top">
@@ -433,10 +314,15 @@
           <h3>W3Schools</h3>
           <p>Tutoriales interactivos, ejemplos ejecutables en vivo y documentación rápida para practicar desarrollo web y código.</p>
         </div>
-        <a href="https://www.w3schools.com/" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: Portal W3Schools ↗</a>
+        <div class="btn-group">
+          <a href="https://www.w3schools.com/" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: Portal W3Schools ↗</a>
+        </div>
       </article>
     </div>
   </main>
+
+  <!-- CONTADOR DE VISITAS -->
+  <div class="visit-counter">👁 Visitas a la página: <strong id="visit-count">...</strong></div>
 
   <script>
     function iniciarEntrada() {
@@ -444,25 +330,38 @@
       const loading = document.getElementById('screen-loading');
       const catalog = document.getElementById('screen-catalog');
       const bar = document.getElementById('progress-bar');
-
       welcome.classList.add('hidden');
       loading.classList.remove('hidden');
-
-      setTimeout(() => {
-        bar.style.width = '100%';
-      }, 50);
-
+      setTimeout(() => { bar.style.width = '100%'; }, 50);
       setTimeout(() => {
         loading.classList.add('hidden');
         catalog.classList.remove('hidden');
         bar.style.width = '0%';
       }, 1600);
     }
-
     function volverInicio() {
       document.getElementById('screen-catalog').classList.add('hidden');
       document.getElementById('screen-welcome').classList.remove('hidden');
     }
+
+    // Contador de visitas (counterapi.dev). Cambia NAMESPACE por un nombre único tuyo.
+    (async function contarVisitas() {
+      const NAMESPACE = 'portal-programacion-mayleth-sanchez';
+      const KEY = 'visitas';
+      const el = document.getElementById('visit-count');
+      let yaContada = false;
+      try { yaContada = sessionStorage.getItem('visita-contada') === '1'; } catch (e) {}
+      // Solo suma 1 por sesión; si ya se contó, solo consulta el total
+      const url = `https://api.counterapi.dev/v1/${NAMESPACE}/${KEY}/${yaContada ? '' : 'up'}`;
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        el.textContent = Number(data.count).toLocaleString('es-MX');
+        try { sessionStorage.setItem('visita-contada', '1'); } catch (e) {}
+      } catch (e) {
+        el.textContent = 'no disponible';
+      }
+    })();
   </script>
 </body>
 </html>
