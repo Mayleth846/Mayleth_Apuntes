@@ -153,7 +153,7 @@
     /* Catálogo de Materias */
     .catalog-container {
       width: 100%;
-      max-width: 1120px;
+      max-width: 1160px;
       animation: fadeIn 0.6s ease;
     }
 
@@ -193,7 +193,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 24px;
     }
 
@@ -242,12 +242,12 @@
     }
 
     .btn-manual {
-      display: inline-block;
+      display: block;
       text-align: center;
       text-decoration: none;
       color: #dbeafe;
       border: 1.5px solid var(--neon-bright);
-      padding: 10px 18px;
+      padding: 11px 16px;
       border-radius: 8px;
       font-size: 0.92rem;
       font-weight: 600;
@@ -277,7 +277,7 @@
 
   <!-- 1. PANTALLA INICIAL -->
   <section id="screen-welcome" class="welcome-box">
-    <h3 class="neon-title">Hola alumnos de Programación</h3>
+    <h1 class="neon-title">Hola alumnos de programación</h1>
     <button class="btn-neon" onclick="iniciarEntrada()">Entrar</button>
   </section>
 
@@ -297,7 +297,7 @@
   <!-- 3. CATÁLOGO DE MATERIAS -->
   <main id="screen-catalog" class="catalog-container hidden">
     <header class="catalog-header">
-      <h3>Catálogo de Programación  - Dra. Mayleth Sánchez P.</h3>
+      <h2>Catálogo de Programación</h2>
       <button class="btn-back" onclick="volverInicio()">← Volver</button>
     </header>
 
@@ -309,7 +309,7 @@
           <h3>Principios de Programación</h3>
           <p>Fundamentos de algoritmos, diagramas de flujo, variables, estructuras de control y lógica computacional.</p>
         </div>
-        <a href="manual-principios-programacion.pdf" target="_blank" class="btn-manual">Ver manual</a>
+        <a href="https://elhacker.info/manuales/Lenguajes%20de%20Programacion/Fundamentos%20de%20programaci%C3%B3n,%20algoritmos,%20L%C3%B3gica%20de%20programaci%C3%B3n,%20etc/Fundamentos-de-Programacion.pdf%20%C2%B7%20versi%C3%B3n%201.pdf" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: Fundamentos (Alfaomega)</a>
       </article>
 
       <!-- Módulo 2 -->
@@ -319,7 +319,7 @@
           <h3>Programación en Java</h3>
           <p>Programación orientada a objetos, clases, herencia, polimorfismo, manejo de excepciones y estructuras de datos.</p>
         </div>
-        <a href="manual-java.pdf" target="_blank" class="btn-manual">Ver manual</a>
+        <a href="https://docs.oracle.com/javase/tutorial/" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: Documentación Oficial Oracle</a>
       </article>
 
       <!-- Módulo 3 -->
@@ -329,27 +329,37 @@
           <h3>Programación Web</h3>
           <p>Estructura semántica con HTML, diseño responsivo, flexbox, grid y estilos modernos con CSS.</p>
         </div>
-        <a href="manual-html-css.pdf" target="_blank" class="btn-manual">Ver manual</a>
+        <a href="https://developer.mozilla.org/es/docs/Learn_web_development" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: MDN Web Docs (Mozilla)</a>
       </article>
 
       <!-- Módulo 4 -->
       <article class="card">
         <div>
-          <div class="card-tag">04 // ANDROID & IOS</div>
+          <div class="card-tag">04 // ANDROID & MÓVIL</div>
           <h3>Aplicaciones Móviles</h3>
           <p>Diseño de interfaces móviles, ciclo de vida de pantallas, navegación y consumo de servicios en dispositivos.</p>
         </div>
-        <a href="manual-aplicaciones-moviles.pdf" target="_blank" class="btn-manual">Ver manual</a>
+        <a href="https://developer.android.com/develop?hl=es-419" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: Android Developers (Google)</a>
       </article>
 
       <!-- Módulo 5 -->
       <article class="card">
         <div>
-          <div class="card-tag">05 // SCRUM & KANBAN</div>
+          <div class="card-tag">05 // SCRUM & AGILE</div>
           <h3>Metodologías Ágiles</h3>
           <p>Gestión iterativa de proyectos, roles en Scrum, sprints, tableros Kanban y entrega continua de software.</p>
         </div>
-        <a href="https://www.w3schools.com/">Visit W3Schools.com!</a>
+        <a href="https://scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-Spanish-Latin-South-American.pdf" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: La Guía Oficial de Scrum</a>
+      </article>
+
+      <!-- Módulo 6 -->
+      <article class="card">
+        <div>
+          <div class="card-tag">06 // REFERENCIA INTERACTIVA</div>
+          <h3>W3Schools</h3>
+          <p>Tutoriales interactivos, ejemplos ejecutables en vivo y documentación rápida para practicar desarrollo web y código.</p>
+        </div>
+        <a href="https://www.w3schools.com/" target="_blank" rel="noopener noreferrer" class="btn-manual">Ver manual: Portal Oficial W3Schools</a>
       </article>
     </div>
   </main>
