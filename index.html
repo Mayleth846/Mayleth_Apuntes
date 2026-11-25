@@ -204,6 +204,48 @@
     }
     .visit-counter strong { color: #ffffff; font-size: 1.1rem; text-shadow: 0 0 10px rgba(47, 123, 255, 0.9); }
 
+
+    button.btn-manual { width: 100%; cursor: pointer; font-family: inherit; }
+    .lock-box, .game-box {
+      background: var(--card-dark);
+      border: 2px solid var(--border-white);
+      border-radius: 18px;
+      padding: 40px 34px;
+      text-align: center;
+      width: 100%;
+      box-shadow: 0 0 30px rgba(47, 123, 255, 0.5), 0 15px 40px rgba(0, 0, 0, 0.8);
+      animation: fadeUp 0.3s ease;
+    }
+    .lock-box { max-width: 440px; }
+    .game-box { max-width: 680px; }
+    .lock-icon { font-size: 2.6rem; margin-bottom: 10px; }
+    .lock-box h2, .game-box h2 { margin-bottom: 8px; }
+    .lock-box p, .game-sub { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 20px; }
+    .lock-input {
+      width: 100%; padding: 13px 16px; margin-bottom: 14px;
+      background: #000; color: #fff; text-align: center; letter-spacing: 3px; font-size: 1.05rem;
+      border: 1.5px solid var(--border-white); border-radius: 10px;
+    }
+    .lock-input:focus { outline: 3px solid var(--neon-electric); }
+    .lock-error { color: #ff8da1; font-size: 0.9rem; min-height: 1.3em; margin-top: 12px; }
+    .game-stats { display: flex; justify-content: space-between; margin-bottom: 18px; font-weight: 700; }
+    .code-block {
+      background: #000; border: 1.5px solid var(--border-white); border-radius: 10px;
+      padding: 16px; margin: 14px 0 18px; text-align: left; font-family: monospace; font-size: 1rem;
+      color: #8fd0ff; white-space: pre-wrap;
+    }
+    .options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .option {
+      background: #000; color: #fff; border: 1.5px solid var(--border-white); border-radius: 10px;
+      padding: 12px; font-size: 1rem; font-family: monospace; cursor: pointer; transition: all 0.2s ease;
+    }
+    .option:hover:enabled { background: var(--neon-blue); box-shadow: 0 0 16px rgba(47, 123, 255, 0.8); }
+    .option.ok { background: #0a7a3c; }
+    .option.bad { background: #a3182f; }
+    .game-msg { min-height: 1.4em; margin-top: 14px; color: var(--text-muted); font-size: 0.92rem; }
+    .game-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
+    @media (max-width: 480px) { .options { grid-template-columns: 1fr; } }
+
     @keyframes pulse { 0%, 100% { transform: scale(0.8); opacity: 0.4; } 50% { transform: scale(1.25); opacity: 1; } }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
@@ -223,6 +265,15 @@
     <div class="progress-track"><div id="progress-bar" class="progress-fill"></div></div>
   </section>
 
+  <section id="screen-lock" class="lock-box hidden">
+    <div class="lock-icon">🔒</div>
+    <h2>Acceso restringido</h2>
+    <p>Escribe el código que te dio la maestra para entrar.</p>
+    <input id="lock-input" class="lock-input" type="password" placeholder="Código" autocomplete="off" onkeydown="if(event.key==='Enter')verificarCodigo()" />
+    <button class="btn-neon" onclick="verificarCodigo()" style="padding:12px 36px;font-size:0.95rem">Desbloquear</button>
+    <div id="lock-error" class="lock-error" role="alert"></div>
+  </section>
+
   <main id="screen-catalog" class="catalog-container hidden">
     <header class="catalog-header">
       <h2>Catálogo de Programación</h2>
@@ -240,7 +291,7 @@
           <p>Fundamentos de algoritmos, diagramas de flujo, variables, estructuras de control y lógica computacional.</p>
         </div>
         <div class="btn-group">
-          <a href="https://elhacker.info/manuales/Lenguajes%20de%20Programacion/Fundamentos%20de%20programaci%C3%B3n,%20algoritmos,%20L%C3%B3gica%20de%20programaci%C3%B3n,%20etc/Fundamentos-de-Programacion.pdf%20%C2%B7%20versi%C3%B3n%201.pdf" target="_blank" rel="noopener noreferrer" class="btn-manual">📄 PDF: Fundamentos de Programación ↗</a>
+          <a href="pdf/fundamentos.pdf" target="_blank" rel="noopener noreferrer" class="btn-manual">📄 PDF: Fundamentos de Programación ↗</a>
         </div>
       </article>
 
@@ -254,7 +305,7 @@
           <p>Programación orientada a objetos, clases, herencia, polimorfismo, manejo de excepciones y estructuras de datos.</p>
         </div>
         <div class="btn-group">
-          <a href="https://core.ac.uk/download/250406084.pdf" target="_blank" rel="noopener noreferrer" class="btn-manual">📄 PDF: Programación orientada a objetos con Java y UML ↗</a>
+          <a href="pdf/java.pdf" target="_blank" rel="noopener noreferrer" class="btn-manual">📄 PDF: Programación orientada a objetos con Java y UML ↗</a>
         </div>
       </article>
 
@@ -269,7 +320,7 @@
         </div>
         <div class="btn-group">
           <a href="https://developer.mozilla.org/es/docs/Learn_web_development" target="_blank" rel="noopener noreferrer" class="btn-manual">🌐 Guía en español: Aprende desarrollo web (MDN) ↗</a>
-          <a href="https://ceper.uniandes.edu.co/files/2022/10/MANUAL-HTML-Y-CSS.pdf" target="_blank" rel="noopener noreferrer" class="btn-manual">📄 PDF: Manual básico de HTML y CSS ↗</a>
+          <a href="pdf/html-css.pdf" target="_blank" rel="noopener noreferrer" class="btn-manual">📄 PDF: Manual básico de HTML y CSS ↗</a>
         </div>
       </article>
 
@@ -297,7 +348,7 @@
           <p>Gestión iterativa de proyectos, roles en Scrum, sprints, tableros Kanban y entrega continua de software.</p>
         </div>
         <div class="btn-group">
-          <a href="https://scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-Spanish-Latin-South-American.pdf" target="_blank" rel="noopener noreferrer" class="btn-manual">📄 PDF: Guía oficial de Scrum en español ↗</a>
+          <a href="pdf/scrum.pdf" target="_blank" rel="noopener noreferrer" class="btn-manual">📄 PDF: Guía oficial de Scrum en español ↗</a>
         </div>
       </article>
 
@@ -328,8 +379,42 @@
           <a href="https://www.oracle.com/java/technologies/downloads/" target="_blank" rel="noopener noreferrer" class="btn-manual">Ir a descargas: Java Downloads ↗</a>
         </div>
       </article>
+
+      <article class="card">
+        <div>
+          <div class="card-top">
+            <span class="card-tag">08 // MINI JUEGO</span>
+            <svg class="card-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="4"></rect><line x1="6" y1="12" x2="10" y2="12"></line><line x1="8" y1="10" x2="8" y2="14"></line><circle cx="16" cy="11" r="1"></circle><circle cx="18" cy="13" r="1"></circle></svg>
+          </div>
+          <h3>Reto Java: ¿Qué imprime?</h3>
+          <p>Lee el código, elige la respuesta correcta y no pierdas tus 3 vidas. Practica variables, ciclos y herencia.</p>
+        </div>
+        <div class="btn-group">
+          <button class="btn-manual" onclick="abrirJuego()">🎮 Jugar ahora</button>
+        </div>
+      </article>
     </div>
   </main>
+
+  <section id="screen-game" class="game-box hidden">
+    <h2>🎮 Reto Java</h2>
+    <p class="game-sub">Elige la respuesta correcta. Tienes 3 vidas.</p>
+    <div class="game-stats"><span id="g-lives">❤️❤️❤️</span><span id="g-progress"></span><span id="g-score">⭐ 0</span></div>
+    <div id="g-play">
+      <strong id="g-question"></strong>
+      <pre id="g-code" class="code-block"></pre>
+      <div id="g-options" class="options"></div>
+      <div id="g-msg" class="game-msg" aria-live="polite"></div>
+    </div>
+    <div id="g-end" class="hidden">
+      <h3 id="g-end-title" style="margin-bottom:8px"></h3>
+      <p id="g-end-text" class="game-sub"></p>
+    </div>
+    <div class="game-actions">
+      <button id="g-restart" class="btn-back hidden" onclick="iniciarJuego()">🔁 Jugar otra vez</button>
+      <button class="btn-back" onclick="cerrarJuego()">← Volver al catálogo</button>
+    </div>
+  </section>
 
   <!-- CONTADOR DE VISITAS -->
   <div class="visit-counter">👁 Visitas a la página: <strong id="visit-count">...</strong></div>
@@ -345,13 +430,125 @@
       setTimeout(() => { bar.style.width = '100%'; }, 50);
       setTimeout(() => {
         loading.classList.add('hidden');
-        catalog.classList.remove('hidden');
         bar.style.width = '0%';
+        mostrarCatalogoOBloqueo();
       }, 1600);
     }
+    function ocultarTodo() {
+      ['screen-catalog', 'screen-lock', 'screen-game'].forEach(id => document.getElementById(id).classList.add('hidden'));
+    }
     function volverInicio() {
-      document.getElementById('screen-catalog').classList.add('hidden');
+      ocultarTodo();
       document.getElementById('screen-welcome').classList.remove('hidden');
+    }
+
+    // ---- BLOQUEO ----
+    // Cambia el código aquí. Ojo: es una barrera sencilla; cualquiera que vea el código fuente de la página puede leerlo.
+    const CODIGO_ACCESO = 'java2026';
+    function estaDesbloqueado() {
+      try { return sessionStorage.getItem('desbloqueado') === '1'; } catch (e) { return false; }
+    }
+    function mostrarCatalogoOBloqueo() {
+      if (estaDesbloqueado()) {
+        document.getElementById('screen-catalog').classList.remove('hidden');
+      } else {
+        document.getElementById('lock-input').value = '';
+        document.getElementById('lock-error').textContent = '';
+        document.getElementById('screen-lock').classList.remove('hidden');
+        document.getElementById('lock-input').focus();
+      }
+    }
+    function verificarCodigo() {
+      const val = document.getElementById('lock-input').value.trim();
+      if (val === CODIGO_ACCESO) {
+        try { sessionStorage.setItem('desbloqueado', '1'); } catch (e) {}
+        document.getElementById('screen-lock').classList.add('hidden');
+        document.getElementById('screen-catalog').classList.remove('hidden');
+      } else {
+        document.getElementById('lock-error').textContent = 'Código incorrecto. Inténtalo de nuevo.';
+      }
+    }
+
+    // ---- MINI JUEGO ----
+    const PREGUNTAS = [
+      { q: '¿Cuánto vale x al final?', code: 'int x = 5;\nx = x + 3;', o: ['53', '8', '5', 'Error'], a: 1, e: 'x + 3 suma los números: 5 + 3 = 8.' },
+      { q: '¿Cuántas veces se repite el ciclo?', code: 'for (int i = 0; i < 3; i++) {\n  ...\n}', o: ['2', '4', '3', 'Infinitas'], a: 2, e: 'i vale 0, 1 y 2. Cuando llega a 3 ya no se cumple i < 3.' },
+      { q: '¿Qué tipo de dato guarda "Hola"?', code: '___ saludo = "Hola";', o: ['String', 'int', 'boolean', 'double'], a: 0, e: 'String es el tipo para texto.' },
+      { q: '¿Qué resultado da?', code: 'System.out.println(10 % 3);', o: ['3', '0', '3.33', '1'], a: 3, e: '% es el residuo de la división: 10 entre 3 sobra 1.' },
+      { q: '¿Qué palabra clave crea una clase hija (herencia)?', code: 'class Perro ___ Animal { }', o: ['import', 'extends', 'static', 'return'], a: 1, e: 'extends indica que Perro hereda de Animal.' },
+      { q: '¿Qué resultado da?', code: 'boolean r = (5 > 3) && (2 > 4);\nSystem.out.println(r);', o: ['true', 'Error', 'null', 'false'], a: 3, e: '&& exige que ambas sean verdaderas, y 2 > 4 es falso.' }
+    ];
+    let jIdx = 0, jVidas = 3, jPuntos = 0, jBloqueado = false;
+
+    function abrirJuego() {
+      ocultarTodo();
+      document.getElementById('screen-game').classList.remove('hidden');
+      iniciarJuego();
+    }
+    function cerrarJuego() {
+      ocultarTodo();
+      document.getElementById('screen-catalog').classList.remove('hidden');
+    }
+    function iniciarJuego() {
+      jIdx = 0; jVidas = 3; jPuntos = 0; jBloqueado = false;
+      document.getElementById('g-play').classList.remove('hidden');
+      document.getElementById('g-end').classList.add('hidden');
+      document.getElementById('g-restart').classList.add('hidden');
+      mostrarPregunta();
+    }
+    function actualizarStats() {
+      document.getElementById('g-lives').textContent = jVidas > 0 ? '❤️'.repeat(jVidas) : '💔';
+      document.getElementById('g-score').textContent = '⭐ ' + jPuntos;
+      document.getElementById('g-progress').textContent = 'Pregunta ' + Math.min(jIdx + 1, PREGUNTAS.length) + '/' + PREGUNTAS.length;
+    }
+    function mostrarPregunta() {
+      const p = PREGUNTAS[jIdx];
+      jBloqueado = false;
+      actualizarStats();
+      document.getElementById('g-question').textContent = p.q;
+      document.getElementById('g-code').textContent = p.code;
+      document.getElementById('g-msg').textContent = '';
+      const cont = document.getElementById('g-options');
+      cont.innerHTML = '';
+      p.o.forEach((txt, i) => {
+        const b = document.createElement('button');
+        b.className = 'option';
+        b.textContent = txt;
+        b.onclick = () => responder(i, b);
+        cont.appendChild(b);
+      });
+    }
+    function responder(i, btn) {
+      if (jBloqueado) return;
+      jBloqueado = true;
+      const p = PREGUNTAS[jIdx];
+      const botones = document.querySelectorAll('#g-options .option');
+      botones.forEach(b => b.disabled = true);
+      botones[p.a].classList.add('ok');
+      const msg = document.getElementById('g-msg');
+      if (i === p.a) {
+        jPuntos += 10;
+        msg.textContent = '✅ ¡Correcto! ' + p.e;
+      } else {
+        jVidas--;
+        btn.classList.add('bad');
+        msg.textContent = '❌ Incorrecto. ' + p.e;
+      }
+      actualizarStats();
+      setTimeout(() => {
+        jIdx++;
+        if (jVidas <= 0 || jIdx >= PREGUNTAS.length) terminarJuego();
+        else mostrarPregunta();
+      }, 1800);
+    }
+    function terminarJuego() {
+      document.getElementById('g-play').classList.add('hidden');
+      document.getElementById('g-end').classList.remove('hidden');
+      document.getElementById('g-restart').classList.remove('hidden');
+      const gano = jVidas > 0;
+      document.getElementById('g-end-title').textContent = gano ? '🏆 ¡Completaste el reto!' : '💔 Te quedaste sin vidas';
+      document.getElementById('g-end-text').textContent = 'Puntaje: ' + jPuntos + ' de ' + (PREGUNTAS.length * 10) + '. ' + (gano ? '¡Buen trabajo!' : 'Repasa el material e inténtalo otra vez.');
+      document.getElementById('g-lives').textContent = gano ? '❤️'.repeat(jVidas) : '💔';
     }
 
     // Contador de visitas (counterapi.dev). Cambia NAMESPACE por un nombre único tuyo.
